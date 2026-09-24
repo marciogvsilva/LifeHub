@@ -156,9 +156,34 @@ A decisão foi manter no notebook, otimizando para caber nele, e decidir sobre a
 - **Fatos antes de opiniões.** Descobri que o hardware do servidor era bem diferente do que eu tinha escrito, e isso mudou a resposta sobre IA local.
 - **Complexidade conquistada, não adicionada.** Até comentar as dependências de banco foi aplicar isso: o banco volta quando o card dele chegar.
 
+## 7. O que o segundo review ensinou
+
+### Evento de domínio não é relógio
+Eu tinha escrito que `notifications` reage aos eventos de `tasks`. Mas o evento acontece quando a tarefa é **criada**, e o lembrete precisa disparar quando ela **vence**. Nesse momento, nenhum evento acontece: alguém precisa de um relógio.
+
+A solução: `notifications` guarda cada lembrete com a hora de disparo e a marca "já enviado", e **um único job** envia os vencidos. De brinde, a recuperação ao religar o notebook sai de graça: o que venceu desligado continua "não enviado".
+
+> 💡 **Insight:** eventos dizem **o que mudou**; jobs agendados dizem **que horas são**. Funcionalidades baseadas em tempo quase sempre precisam dos dois.
+
+### "Depois eu decido" é uma decisão
+Deixar a pergunta 6 em aberto ("depende da dificuldade") contradizia três decisões já tomadas: o schema por módulo, a mitigação do ADR-001 e a matriz. Fechei: só APIs públicas. Se a performance exigir, a saída legítima é um **read model** (uma cópia dos dados, própria do dashboard, alimentada por eventos), registrada num ADR, e nunca um `JOIN` entre schemas.
+
+### Multiusuário tem duas perguntas, não uma
+O ADR-002 respondeu "os dados são isolados?". Faltava "**quem pode entrar?**". Escolhi cadastro aberto ([ADR-003](../adr/ADR-003-cadastro-aberto.md)), com papéis ADMIN e USER. O preço é a proteção contra abuso: limite de tentativas, cotas por usuário e acesso só pela rede local até as mitigações existirem.
+
+> 💡 **ADR aceito não se edita.** A decisão do cadastro foi para um ADR novo (ADR-003), em vez de alterar o ADR-002.
+
+### Documento e código precisam concordar
+- O estudo dizia que o driver do PostgreSQL estava comentado, mas ele estava ativo. Agora está comentado de verdade.
+- O estudo citava `git update-index --chmod=+x mvnw`, mas o comando não tinha sido aplicado. Sem ele, o CI do CARD-006 falharia com `Permission denied`. Agora foi aplicado.
+
+### Trade-off consciente: auditoria síncrona
+Gravar a auditoria na mesma transação garante que ação e registro andam juntos, mas faz todos os módulos dependerem de `audit`. Alternativa para avaliar no CARD-013: publicar um evento e consumi-lo com `@TransactionalEventListener(phase = BEFORE_COMMIT)`. A transação continua a mesma, sem a dependência direta.
+
 ## Pendências para revisar
 - [x] Revisar tudo que estava marcado como proposta nos documentos (aprovado).
-- [ ] Preencher o disco do notebook e as horas por semana (`requirements.md` §4).
+- [ ] Preencher o disco do notebook (HDD ou SSD?) e as horas por semana (`requirements.md` §4 e §5).
+- [ ] Verificar a bateria do notebook antes de deixá-lo ligado 24/7.
 - [ ] Na fase de IA, avaliar os dados pessoais enviados ao provider na nuvem (a IA é opcional).
 - [ ] Reativar as dependências de banco no CARD-004.
 - [ ] Decidir se o backend fica na raiz ou em `backend/` (CARD-002/003).

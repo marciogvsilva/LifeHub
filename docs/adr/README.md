@@ -16,6 +16,7 @@ Decisões arquiteturais relevantes são registradas aqui, no formato de Michael 
 |---|---|---|
 | [ADR-001](ADR-001-modular-monolith.md) | Utilizar Modular Monolith | Aceito |
 | [ADR-002](ADR-002-multiusuario.md) | Multiusuário com isolamento por usuário | Aceito |
+| [ADR-003](ADR-003-cadastro-aberto.md) | Cadastro aberto, com papéis ADMIN e USER | Aceito |
 
 ## Template
 

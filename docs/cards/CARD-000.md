@@ -75,7 +75,7 @@ Responda por escrito, **no documento indicado**.
 - [x] O MVP está fechado, com uma lista explícita do que fica fora.
 
 ## Definition of Done
-- [ ] Tudo commitado num repositório Git.
+- [x] Tudo commitado num repositório Git.
 - [x] Review técnico feito e os pontos levantados foram tratados ou registrados.
 
 ## Review técnico
@@ -97,3 +97,9 @@ _Anotações do review (2026-09-24):_
 - **CARD-004:** reativar as dependências de banco comentadas no `pom.xml`.
 - **Fase de IA:** avaliar quais dados pessoais vão para o provider na nuvem antes de ativar o RAG.
 - **Licença:** definir antes de tornar o repositório público.
+
+_Segundo review (2026-09-24): aprovado, com três decisões fechadas:_
+- **Disparo dos lembretes:** nenhum módulo era dono do momento em que a tarefa *vence*. Decidido: `notifications` agenda os lembretes a partir dos eventos de `tasks` e `calendar` e um único job os dispara, o que também resolve a recuperação ao religar o notebook ([architecture.md §4](../architecture/architecture.md)).
+- **Pergunta 6:** "depende da dificuldade" deixava a porta aberta para ler tabelas alheias. Decidido: só APIs públicas; a exceção por performance é um read model do dashboard, registrada em ADR.
+- **Cadastro na internet:** decidido cadastro aberto, com papéis ADMIN e USER e as mitigações do [ADR-003](../adr/ADR-003-cadastro-aberto.md).
+- Corrigidos: `mvnw` com permissão de execução no Git, driver do PostgreSQL comentado, `calendar → tasks` marcado como pós-MVP, resposta da pergunta 7 fortalecida, trade-off da auditoria síncrona registrado, riscos de disco e bateria em [requirements.md §5](../architecture/requirements.md).

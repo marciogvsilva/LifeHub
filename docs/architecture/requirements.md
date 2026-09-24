@@ -35,7 +35,7 @@ O MVP é a **primeira versão que você usa no dia a dia**. O que não estiver n
 Formato: *Como usuário, quero ___ para ___.* Critério de aceite em uma linha.
 
 ### Conta
-- **US-01** — Como usuário, quero me cadastrar para ter meus dados isolados. _Aceite: e-mail único, senha armazenada com hash._
+- **US-01** — Como visitante, quero me cadastrar para ter meus dados isolados. _Aceite: cadastro aberto ([ADR-003](../adr/ADR-003-cadastro-aberto.md)); e-mail único, senha armazenada com hash; limite de tentativas por IP._
 - **US-02** — Como usuário, quero fazer login para acessar meus dados. _Aceite: credenciais inválidas retornam erro genérico._
 - **US-03** — Como usuário, quero sair da conta para que ninguém use minha sessão. _Aceite: depois do logout, o token não é mais aceito._
 
@@ -100,3 +100,10 @@ Servem de critério para os testes de desempenho que vão decidir a hospedagem (
 - Rede: doméstica por enquanto; no futuro, hospedagem online (AWS). Até lá, acesso só pela rede local. Se precisar de acesso externo, usar VPN (WireGuard ou Tailscale) em vez de expor portas do roteador.
 - Tempo: projeto pessoal, sessões de estudo (_✍️ quantas horas por semana?_)
 - Stack definida: Java 21, Spring Boot, React, PostgreSQL (ver [architecture.md](architecture.md))
+
+## 5. Riscos operacionais
+
+| Risco | Impacto | Mitigação |
+|---|---|---|
+| Disco do notebook ser HDD | É o maior gargalo do PostgreSQL e pode inviabilizar a meta de p95 < 500 ms | Confirmar o tipo de disco; se for HDD, trocar por SSD antes do deploy (CARD-007) |
+| Bateria antiga ligada na tomada 24/7 | Baterias velhas podem inchar | Retirar a bateria ou limitar a carga; se estiver saudável, ela serve de nobreak |
