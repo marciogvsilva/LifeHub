@@ -56,7 +56,7 @@ flowchart TB
 >
 > ✍️ Você concorda? Se discordar, justifique.
 
-**Resposta:** _pendente._
+**Resposta:** sim. Status e ordem são atributos da tarefa. Um módulo `kanban` separado criaria duas fontes de verdade sobre o status da mesma tarefa e exigiria sincronizá-las.
 
 ## 3. Módulos
 
@@ -70,7 +70,7 @@ Para cada módulo, complete a frase: **"Este módulo é dono de ___ e ninguém m
 | `calendar` | Eventos, compromissos, lembretes | Eventos e compromissos | MVP |
 | `notes` | Notas pessoais e conhecimento | Notas e as referências feitas dentro delas | MVP |
 | `dashboard` | Visão agregada do dia e visões personalizadas | Só a configuração das visões personalizadas; os dados exibidos são dos outros módulos | MVP |
-| `audit` | Registro de ações relevantes (humanas e de agentes) | Registros de auditoria (só inclusão, nunca alteração) | Security |
+| `audit` | Registro de ações relevantes (humanas e de agentes) | Registros de auditoria (só inclusão, nunca alteração) | MVP |
 | `notifications` | Notificações internas e externas (e-mail) | Notificações e o status de envio | Messaging |
 | `documents` | Upload, metadados, extração, chunks | Arquivos, metadados, texto extraído e chunks | Documents |
 | `ai` | Providers, orquestração, tools, RAG, agentes | Configuração de providers e histórico de execuções dos agentes | AI |
@@ -86,7 +86,7 @@ Para cada módulo, complete a frase: **"Este módulo é dono de ___ e ninguém m
 
 > ✍️ **Pergunta 5 do CARD-000.** Notes pode referenciar Tasks? Em que direção vai a dependência?
 
-**Resposta:** sim, com referências no estilo de links Markdown. Ao clicar na referência, a tarefa aparece num balão (popover), sem trocar de tela. A dependência vai de `notes → tasks`. Fica fora do MVP (release de produtividade).
+**Resposta:** sim, com referências no estilo de links Markdown. Ao clicar na referência, a tarefa aparece num balão (popover), sem trocar de tela. A dependência vai de `notes → tasks`. Fica fora do MVP (pós-MVP de produtividade).
 
 > ✍️ **Pergunta 6 do CARD-000.** O Dashboard lê as tabelas dos outros módulos ou chama as APIs públicas deles?
 
@@ -129,11 +129,14 @@ Regras que a matriz deixa explícitas:
 
 > ✍️ Qual você usa em cada relação acima, e por quê?
 
-**Resposta (conforme a matriz):**
-- **API síncrona** quando o módulo precisa de dados para responder na hora: `auth → users`, `calendar → tasks`, `dashboard → *`, `ai → *` e as chamadas a `audit`.
-- **Eventos** quando o emissor não precisa saber quem reage: `notifications` escuta os eventos de `tasks` e `calendar`.
-
-_Pendente: justificar cada escolha com as suas palavras._
+**Resposta:**
+- **API síncrona** quando o módulo precisa de dados para responder na hora:
+  - `auth → users`: o login precisa das credenciais do usuário antes de responder.
+  - `calendar → tasks`, `dashboard → *` e `ai → *`: são leituras para montar uma tela ou uma resposta. O usuário espera ver os dados atuais, então consistência imediata vale mais que desacoplamento.
+  - `* → audit`: a chamada acontece na mesma transação da ação. Se a ação for gravada, o registro de auditoria também é.
+- **Eventos** quando o emissor não precisa saber quem reage:
+  - `notifications` escuta os eventos de `tasks` e `calendar`. Criar uma tarefa não deve falhar porque o envio de um e-mail falhou, e `tasks` não precisa saber que notificações existem.
+  - No início, os eventos são in-process. Na fase F4, passam para o RabbitMQ com outbox.
 
 ## 5. Stack
 

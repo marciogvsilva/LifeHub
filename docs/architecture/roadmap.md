@@ -55,11 +55,16 @@ flowchart LR
 | CARD-014 | Tasks: paginação e filtros |
 | CARD-015 | Kanban: transições de status e ordenação, com optimistic locking |
 | CARD-016 | Frontend de tasks/Kanban: cache e optimistic updates |
-| CARD-017 | Calendar: eventos, fuso horário e recorrência simples |
+| CARD-017 | Calendar: eventos e fuso horário |
 | CARD-018 | Notes + busca full-text (tsvector) |
 | CARD-019 | Dashboard: queries agregadas, views, índices e `EXPLAIN ANALYZE` |
 
 ✅ **Checkpoint:** **você passa a usar o LifeHub no dia a dia.** A partir daqui, seus incômodos viram requisitos.
+
+### Pós-MVP de produtividade e segurança (esboço)
+O que [requirements.md](requirements.md) deixou "fora do MVP" e não pertence a outra fase. Vira cards quando o uso diário pedir:
+- **Produtividade:** recorrência de eventos, tarefas com data no calendário, referências entre notas e tarefas, visões personalizadas no dashboard, colunas personalizadas no Kanban.
+- **Segurança:** MFA, recuperação de senha, gestão de dispositivos.
 
 ## F4 — Eventos (esboço)
 | Card | Título |

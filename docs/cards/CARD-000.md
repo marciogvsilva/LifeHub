@@ -4,7 +4,7 @@
 |---|---|
 | Fase | F0 — Pensar o sistema |
 | Tipo | Documentação. **Nenhuma linha de código.** |
-| Status | 🟡 Em andamento |
+| Status | ✅ Concluído |
 | Timebox | 2 a 3 sessões |
 
 ## Objetivo
@@ -30,27 +30,27 @@ Responda por escrito, **no documento indicado**.
 |---|---|---|---|
 | 1 | Que problema **seu, de hoje**, o LifeHub resolve melhor que Notion ou Todoist? | [vision.md §2](../architecture/vision.md) | ✅ |
 | 2 | Usuário único ou multiusuário? | [vision.md §3](../architecture/vision.md) | ✅ |
-| 3 | O que acontece quando o notebook desliga? Isso é aceitável? | [vision.md §6](../architecture/vision.md) | 🟡 parcial |
+| 3 | O que acontece quando o notebook desliga? Isso é aceitável? | [vision.md §6](../architecture/vision.md) | ✅ |
 | 4 | Uma tarefa com data é um evento? Um lembrete pertence a Tasks, Calendar ou Notifications? | [architecture.md §4](../architecture/architecture.md) | ✅ |
 | 5 | Notes pode referenciar Tasks? Em que direção vai a dependência? | [architecture.md §4](../architecture/architecture.md) | ✅ |
 | 6 | Dashboard tem dados próprios ou só agrega? Pode ler as tabelas dos outros? | [architecture.md §4](../architecture/architecture.md) | ✅ |
 | 7 | Como evitar que `ai` vire o "módulo Deus"? | [architecture.md §4](../architecture/architecture.md) | ✅ |
-| 8 | Ordene os atributos de qualidade. O que você sacrifica primeiro? | [requirements.md §3](../architecture/requirements.md) | ⬜ |
-| 9 | Que sinal concreto justificaria extrair um microservice? | [ADR-001](../adr/ADR-001-modular-monolith.md) | ⬜ |
+| 8 | Ordene os atributos de qualidade. O que você sacrifica primeiro? | [requirements.md §3](../architecture/requirements.md) | ✅ |
+| 9 | Que sinal concreto justificaria extrair um microservice? | [ADR-001](../adr/ADR-001-modular-monolith.md) | ✅ |
 | 10 | O notebook aguenta rodar um LLM local (Ollama)? | [vision.md §6](../architecture/vision.md) | ✅ |
 
 ## Decisões arquiteturais deste card
-- [ ] ADR-001 — Modular Monolith (completar alternativas e consequências)
-- [ ] _(desafio)_ ADR-002 — Usuário único vs. multiusuário
+- [x] ADR-001 — Modular Monolith (completar alternativas e consequências)
+- [x] _(desafio)_ ADR-002 — Usuário único vs. multiusuário
 
 ## Entregáveis
-- [ ] `README.md` — revisado
-- [ ] `docs/architecture/vision.md` — perguntas 1, 2, 3 e 10 + não-objetivos
-- [ ] `docs/architecture/requirements.md` — user stories do MVP + atributos de qualidade
-- [ ] `docs/architecture/architecture.md` — tabela "é dono de" + matriz de dependências
-- [ ] `docs/diagrams/c4.md` — revisado
-- [ ] `docs/adr/ADR-001-modular-monolith.md` — completo
-- [ ] `docs/architecture/roadmap.md` — MVP bem delimitado
+- [x] `README.md` — revisado
+- [x] `docs/architecture/vision.md` — perguntas 1, 2, 3 e 10 + não-objetivos
+- [x] `docs/architecture/requirements.md` — user stories do MVP + atributos de qualidade
+- [x] `docs/architecture/architecture.md` — tabela "é dono de" + matriz de dependências
+- [x] `docs/diagrams/c4.md` — revisado
+- [x] `docs/adr/ADR-001-modular-monolith.md` — completo
+- [x] `docs/architecture/roadmap.md` — MVP bem delimitado
 
 ## Erros comuns
 - Detalhar as fases 6 a 10 agora. Elas vão mudar, então só esboce.
@@ -69,16 +69,31 @@ Responda por escrito, **no documento indicado**.
 - Definir um SLO caseiro e um RPO (quanto de dado você aceita perder).
 
 ## Critérios de aceite
-- [ ] As 10 perguntas estão respondidas.
-- [ ] Todo módulo tem um dono claro e dependências explícitas, **sem ciclos**.
-- [ ] O ADR-001 tem pelo menos 2 alternativas rejeitadas, com os motivos.
-- [ ] O MVP está fechado, com uma lista explícita do que fica fora.
+- [x] As 10 perguntas estão respondidas.
+- [x] Todo módulo tem um dono claro e dependências explícitas, **sem ciclos**.
+- [x] O ADR-001 tem pelo menos 2 alternativas rejeitadas, com os motivos.
+- [x] O MVP está fechado, com uma lista explícita do que fica fora.
 
 ## Definition of Done
 - [ ] Tudo commitado num repositório Git.
-- [ ] Review técnico feito e os pontos levantados foram tratados ou registrados.
+- [x] Review técnico feito e os pontos levantados foram tratados ou registrados.
 
 ## Review técnico
 Ao terminar, envie os documentos para uma architecture review: contradições entre decisões, o que ficou implícito e os riscos não percebidos.
 
-_Anotações do review:_
+_Anotações do review (2026-09-24):_
+
+**Contradições corrigidas**
+- A matriz de dependências contradizia a arquitetura da IA (§6): `ai` só dependia de `users`, mas as tools chamam `tasks` e `calendar`. Matriz refeita, sem ciclos.
+- O hardware descrito não era o do servidor. Separado em servidor (notebook, 8 GB, Celeron) e desenvolvimento (PC). A resposta sobre IA local mudou.
+- O CARD-017 (MVP) incluía recorrência de eventos, que o `requirements.md` deixa fora do MVP. Recorrência removida do card.
+- Os requisitos falavam em "release de produtividade" e "release de segurança", que não existiam no roadmap. Criada a seção "Pós-MVP de produtividade e segurança" no roadmap.
+- A auditoria (CARD-013) vem antes do MVP no roadmap e todos os módulos a chamam, mas a tabela de módulos dizia "Security". Alinhado: auditoria faz parte do MVP.
+- Um provider de IA pago contrariava "sem serviços pagos obrigatórios". Resolvido tornando a IA opcional.
+
+**Registrado para cards futuros**
+- **CARD-002/003:** o `README.md` diz que o backend fica em `backend/`, mas o projeto do Spring Initializr foi gerado na raiz. Decidir a estrutura do monorepo e mover o projeto, ou atualizar o README.
+- **CARD-003:** com `spring-boot-starter-security` no `pom.xml`, quando o starter web entrar, todos os endpoints passam a exigir login (usuário `user` e senha gerada no log). Esperado, mas pode surpreender.
+- **CARD-004:** reativar as dependências de banco comentadas no `pom.xml`.
+- **Fase de IA:** avaliar quais dados pessoais vão para o provider na nuvem antes de ativar o RAG.
+- **Licença:** definir antes de tornar o repositório público.

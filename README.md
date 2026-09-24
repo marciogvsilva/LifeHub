@@ -23,7 +23,7 @@ Detalhes em [Visão do produto](docs/architecture/vision.md).
 
 | Camada | Tecnologias |
 |---|---|
-| Backend | Java 21, Spring Boot, Spring Security, Spring Data JPA, Bean Validation, Maven |
+| Backend | Java 21, Spring Boot, Spring Security, Spring Data JPA, Bean Validation, Maven, Spring AI |
 | Frontend | React, TypeScript, React Query, Material UI |
 | Banco | PostgreSQL, Liquibase, PL/pgSQL, pgvector |
 | Mensageria | RabbitMQ |
@@ -47,6 +47,7 @@ Cada tecnologia entra no projeto **quando resolve um problema real**, seguindo o
 | [Roadmap](docs/architecture/roadmap.md) | Releases e cards |
 | [ADRs](docs/adr/README.md) | Registro de decisões arquiteturais |
 | [Cards](docs/cards/) | Unidades de aprendizado e implementação |
+| [Estudo](docs/study/) | Anotações e explicações sobre as decisões de cada card |
 
 ---
 
@@ -61,6 +62,7 @@ lifehub/
 │   ├── architecture/ # visão, requisitos, arquitetura, roadmap
 │   ├── adr/          # Architecture Decision Records
 │   ├── cards/        # cards de aprendizado
+│   ├── study/        # anotações de estudo por card
 │   ├── diagrams/     # C4 e outros diagramas (Mermaid)
 │   └── database/     # modelo de dados e convenções
 ├── infra/            # Docker Compose, Nginx
@@ -90,8 +92,9 @@ Cada card tem objetivo, conceitos para estudar, perguntas para reflexão, decis�
 | Item | Status |
 |---|---|
 | Projeto | Em planejamento |
-| Card atual | [CARD-000 — Visão do Produto e Definição Arquitetural](docs/cards/CARD-000.md) |
-| Implementação | Não iniciada |
+| Último card concluído | [CARD-000 — Visão do Produto e Definição Arquitetural](docs/cards/CARD-000.md) |
+| Próximo card | CARD-001 — Modelo de domínio e bounded contexts |
+| Implementação | Base gerada pelo Spring Initializr; nenhuma funcionalidade ainda |
 
 ---
 

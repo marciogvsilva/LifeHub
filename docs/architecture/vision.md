@@ -16,7 +16,7 @@ Uma plataforma pessoal de produtividade e conhecimento, self-hosted, que central
 
 > ✍️ **Pergunta 2 do CARD-000.** Usuário único ou multiusuário?
 
-**Resposta:** multiusuário. Todo dado pertence a um usuário (`user_id`) e fica isolado dos demais. A decisão ainda deve ser registrada no ADR-002.
+**Resposta:** multiusuário. Todo dado pertence a um usuário (`user_id`) e fica isolado dos demais. Decisão registrada no [ADR-002](../adr/ADR-002-multiusuario.md).
 
 ## 4. Objetivos
 
@@ -51,7 +51,10 @@ O LifeHub roda em infraestrutura própria, inicialmente um notebook antigo na re
 
 **Resposta:** por enquanto, a aplicação fica hospedada no notebook. Ela será desenvolvida com boas práticas e otimizações para rodar bem nesse hardware limitado. A decisão final sobre a hospedagem (continuar no notebook ou migrar para a nuvem, por exemplo AWS, que também é um objetivo de aprendizado) fica para depois de testes de desempenho na máquina real.
 
-_Pendente: o que acontece quando o notebook desliga (indisponibilidade aceitável? lembretes perdidos ou disparados ao religar? backups)._
+**Quando o notebook desliga:** a indisponibilidade é aceitável, porque o uso é pessoal. O que isso implica:
+- **Operação:** o notebook fica ligado o tempo todo, como servidor dedicado.
+- **Lembretes:** nenhum lembrete se perde. Ao religar, a aplicação procura os lembretes que venceram enquanto estava desligada e os envia marcados como atrasados.
+- **Backups:** `pg_dump` diário, copiado para fora do notebook (PC ou nuvem). Se o disco do notebook morrer, o backup sobrevive. O restore é testado periodicamente.
 
 > ✍️ **Pergunta 10 do CARD-000.** O hardware aguenta rodar um LLM local (Ollama)?
 > Levante a RAM, a CPU e se há GPU. Se não aguentar, o que isso muda na fase de IA?
@@ -60,7 +63,7 @@ _Pendente: o que acontece quando o notebook desliga (indisponibilidade aceitáve
 - **Servidor (notebook):** 8 GB de RAM e Celeron de 2ª geração, sem GPU dedicada. **Não** roda um LLM local de forma utilizável.
 - **Desenvolvimento (PC):** 32 GB de RAM, Ryzen 5 5600G e Radeon RX 6600 (8 GB de VRAM). Roda o Ollama durante o desenvolvimento.
 
-_Pendente: como a IA vai funcionar no servidor (provider na nuvem, Ollama no PC acessado pela rede, ou outra opção)._
+**IA no servidor:** em produção, usar um provider na nuvem (OpenAI) por padrão. O Ollama fica no PC para desenvolvimento e testes. A abstração de provider permite trocar um pelo outro só por configuração. Como um provider pago contraria "sem serviços pagos obrigatórios" ([requirements.md §3](requirements.md)), a IA é **opcional**: o LifeHub funciona completo com ela desligada. Antes de ativar o RAG com a nuvem, avaliar quais dados pessoais seriam enviados ao provider. Rever a decisão quando a fase de IA começar ou se a hospedagem migrar para a nuvem.
 
 ## 7. Visão da IA
 
