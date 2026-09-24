@@ -15,7 +15,7 @@ Decisões arquiteturais relevantes são registradas aqui, no formato de Michael 
 | ADR | Título | Status |
 |---|---|---|
 | [ADR-001](ADR-001-modular-monolith.md) | Utilizar Modular Monolith | Proposto |
-| ADR-002 | _Usuário único vs. multiusuário (desafio extra do CARD-000)_ | — |
+| ADR-002 | _Multiusuário (decidido em [vision.md §3](../architecture/vision.md); ADR a escrever, desafio extra do CARD-000)_ | — |
 
 ## Template
 

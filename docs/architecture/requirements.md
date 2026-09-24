@@ -21,6 +21,7 @@ O MVP é a **primeira versão que você usa no dia a dia**. O que não estiver n
 - Recorrência de eventos, relacionamentos entre tarefas/notas/eventos → Release de produtividade
 - Notificações, RabbitMQ → Release de mensageria
 - Documentos, IA, RAG, agentes, MCP → releases posteriores
+- App mobile (fora do projeto como um todo; ver [vision.md §5](vision.md))
 - _✍️ Complete com o que mais você decidir cortar._
 
 > **Teste do MVP:** se um item não for necessário para você abrir o LifeHub amanhã de manhã e planejar o dia, ele não é MVP.
@@ -51,6 +52,8 @@ Formato: *Como usuário, quero ___ para ___.* Critério de aceite em uma linha.
 
 > ✍️ **Pergunta 8 do CARD-000.** Ordene por importância (1 = mais importante) e justifique. O que você sacrifica primeiro?
 
+**Resposta:** _pendente (preencha a coluna Prioridade e a justificativa)._
+
 | Atributo | O que significa no LifeHub | Prioridade |
 |---|---|---|
 | Manutenibilidade | Evoluir sem reescrever; módulos com limites claros | |
@@ -68,7 +71,8 @@ _Justificativa:_
 
 ## 4. Restrições
 
-- Hardware: notebook antigo (_✍️ RAM / CPU / disco_)
-- Rede: doméstica (_✍️ acesso só na LAN ou também externo?_)
+- Hardware do servidor: notebook com 8 GB de RAM e Celeron de 2ª geração. _✍️ Disco?_
+- Hardware de desenvolvimento: PC com 32 GB de RAM, Ryzen 5 5600G e Radeon RX 6600 (ver [vision.md §6](vision.md)).
+- Rede: doméstica por enquanto; no futuro, hospedagem online (AWS). _✍️ Até lá, acesso só na LAN?_
 - Tempo: projeto pessoal, sessões de estudo (_✍️ quantas horas por semana?_)
 - Stack definida: Java 21, Spring Boot, React, PostgreSQL (ver [architecture.md](architecture.md))

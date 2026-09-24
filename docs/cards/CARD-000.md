@@ -26,18 +26,18 @@ Nenhum. Só um repositório Git vazio.
 ## Perguntas que você precisa responder
 Responda por escrito, **no documento indicado**.
 
-| # | Pergunta | Onde responder |
-|---|---|---|
-| 1 | Que problema **seu, de hoje**, o LifeHub resolve melhor que Notion ou Todoist? | [vision.md §2](../architecture/vision.md) |
-| 2 | Usuário único ou multiusuário? | [vision.md §3](../architecture/vision.md) |
-| 3 | O que acontece quando o notebook desliga? Isso é aceitável? | [vision.md §6](../architecture/vision.md) |
-| 4 | Uma tarefa com data é um evento? Um lembrete pertence a Tasks, Calendar ou Notifications? | [architecture.md §4](../architecture/architecture.md) |
-| 5 | Notes pode referenciar Tasks? Em que direção vai a dependência? | [architecture.md §4](../architecture/architecture.md) |
-| 6 | Dashboard tem dados próprios ou só agrega? Pode ler as tabelas dos outros? | [architecture.md §4](../architecture/architecture.md) |
-| 7 | Como evitar que `ai` vire o "módulo Deus"? | [architecture.md §4](../architecture/architecture.md) |
-| 8 | Ordene os atributos de qualidade. O que você sacrifica primeiro? | [requirements.md §3](../architecture/requirements.md) |
-| 9 | Que sinal concreto justificaria extrair um microservice? | [ADR-001](../adr/ADR-001-modular-monolith.md) |
-| 10 | O notebook aguenta rodar um LLM local (Ollama)? | [vision.md §6](../architecture/vision.md) |
+| # | Pergunta | Onde responder | Status |
+|---|---|---|---|
+| 1 | Que problema **seu, de hoje**, o LifeHub resolve melhor que Notion ou Todoist? | [vision.md §2](../architecture/vision.md) | ✅ |
+| 2 | Usuário único ou multiusuário? | [vision.md §3](../architecture/vision.md) | ✅ |
+| 3 | O que acontece quando o notebook desliga? Isso é aceitável? | [vision.md §6](../architecture/vision.md) | 🟡 parcial |
+| 4 | Uma tarefa com data é um evento? Um lembrete pertence a Tasks, Calendar ou Notifications? | [architecture.md §4](../architecture/architecture.md) | ✅ |
+| 5 | Notes pode referenciar Tasks? Em que direção vai a dependência? | [architecture.md §4](../architecture/architecture.md) | ✅ |
+| 6 | Dashboard tem dados próprios ou só agrega? Pode ler as tabelas dos outros? | [architecture.md §4](../architecture/architecture.md) | ✅ |
+| 7 | Como evitar que `ai` vire o "módulo Deus"? | [architecture.md §4](../architecture/architecture.md) | ✅ |
+| 8 | Ordene os atributos de qualidade. O que você sacrifica primeiro? | [requirements.md §3](../architecture/requirements.md) | ⬜ |
+| 9 | Que sinal concreto justificaria extrair um microservice? | [ADR-001](../adr/ADR-001-modular-monolith.md) | ⬜ |
+| 10 | O notebook aguenta rodar um LLM local (Ollama)? | [vision.md §6](../architecture/vision.md) | ✅ |
 
 ## Decisões arquiteturais deste card
 - [ ] ADR-001 — Modular Monolith (completar alternativas e consequências)

@@ -9,16 +9,14 @@ Uma plataforma pessoal de produtividade e conhecimento, self-hosted, que central
 ## 2. Problema
 
 > ✍️ **Pergunta 1 do CARD-000.** Que problema *seu, de hoje*, o LifeHub resolve melhor que Notion, Todoist ou Google Calendar?
-> Se a resposta honesta for "nenhum, o objetivo principal é aprender", escreva isso. Essa resposta muda as prioridades de tudo o que vem depois.
 
-_Resposta:_
+**Resposta:** o foco não é um produto inovador. O objetivo é chegar a algo tão bom quanto uma versão menor dessas ferramentas, mas que centralize tudo o que eu preciso, do jeito que eu gosto de usar.
 
 ## 3. Usuário
 
 > ✍️ **Pergunta 2 do CARD-000.** Usuário único ou multiusuário?
-> Essa é a decisão mais cara de mudar depois. Ela afeta o modelo de dados (toda tabela tem `user_id`?), o RBAC, a auditoria e o isolamento de dados no RAG. Se for relevante, registre a decisão num ADR-002.
 
-_Resposta:_
+**Resposta:** multiusuário. Todo dado pertence a um usuário (`user_id`) e fica isolado dos demais. A decisão ainda deve ser registrada no ADR-002.
 
 ## 4. Objetivos
 
@@ -41,7 +39,8 @@ O projeto privilegia **entendimento e qualidade**, não quantidade de funcionali
 O que o LifeHub **explicitamente não é**. Esta lista é tão importante quanto a de objetivos.
 
 - **Finanças pessoais:** removidas do escopo.
-- _✍️ Complete: o que mais fica de fora? Colaboração em equipe? App mobile nativo? Acesso pela internet ou só na rede local?_
+- **App mobile:** não haverá app mobile, somente web.
+- **Alta escalabilidade:** a aplicação serve apenas para uso pessoal e como portfólio.
 
 ## 6. Contexto de execução
 
@@ -50,12 +49,18 @@ O LifeHub roda em infraestrutura própria, inicialmente um notebook antigo na re
 > ✍️ **Pergunta 3 do CARD-000.** O que acontece quando o notebook desliga? Isso é aceitável?
 > O que isso implica para os lembretes (que precisam disparar numa hora exata) e para os backups?
 
-_Resposta:_
+**Resposta:** por enquanto, a aplicação fica hospedada no notebook. Ela será desenvolvida com boas práticas e otimizações para rodar bem nesse hardware limitado. A decisão final sobre a hospedagem (continuar no notebook ou migrar para a nuvem, por exemplo AWS, que também é um objetivo de aprendizado) fica para depois de testes de desempenho na máquina real.
+
+_Pendente: o que acontece quando o notebook desliga (indisponibilidade aceitável? lembretes perdidos ou disparados ao religar? backups)._
 
 > ✍️ **Pergunta 10 do CARD-000.** O hardware aguenta rodar um LLM local (Ollama)?
 > Levante a RAM, a CPU e se há GPU. Se não aguentar, o que isso muda na fase de IA?
 
-_Resposta:_
+**Resposta:** há duas máquinas:
+- **Servidor (notebook):** 8 GB de RAM e Celeron de 2ª geração, sem GPU dedicada. **Não** roda um LLM local de forma utilizável.
+- **Desenvolvimento (PC):** 32 GB de RAM, Ryzen 5 5600G e Radeon RX 6600 (8 GB de VRAM). Roda o Ollama durante o desenvolvimento.
+
+_Pendente: como a IA vai funcionar no servidor (provider na nuvem, Ollama no PC acessado pela rede, ou outra opção)._
 
 ## 7. Visão da IA
 

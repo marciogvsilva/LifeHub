@@ -16,10 +16,16 @@ Utilizar um **Modular Monolith**: um único deployable Spring Boot, organizado e
 ## Alternativas consideradas
 
 ### A — Microservices desde o início
+
 > ✍️ Por que foi rejeitada? Pense em: operação num notebook, rede entre serviços, consistência de dados, debugging e o tempo gasto em infraestrutura em vez de domínio.
 
+**Por que foi rejeitada:** microservices são um próximo nível, que não se justifica num projeto pequeno e sem necessidade de alta escalabilidade.
+
 ### B — Monólito tradicional em camadas (controller/service/repository)
+
 > ✍️ Por que foi rejeitada? Pense em: o que acontece com o acoplamento quando o sistema tem 10 módulos, e como seria extrair um deles depois.
+
+**Por que foi rejeitada:** o monólito modular oferece o desacoplamento que um hub precisa, já que ele terá diversas funcionalidades desenvolvidas aos poucos. Além disso, a arquitetura modular é um interesse de aprendizado que quero preservar.
 
 ### C — _(opcional) outra alternativa que você considerou_
 
@@ -49,3 +55,5 @@ Utilizar um **Modular Monolith**: um único deployable Spring Boot, organizado e
 ## Quando revisitar esta decisão
 
 > ✍️ **Pergunta 9 do CARD-000.** Que sinal concreto justificaria extrair um módulo? (Ex.: um módulo com carga ou ciclo de deploy muito diferente dos outros, ou necessidade de isolar falhas de um processamento pesado.)
+
+**Resposta:** _pendente._
