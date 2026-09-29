@@ -47,7 +47,7 @@ Cada tecnologia entra no projeto **quando resolve um problema real**, seguindo o
 | [Roadmap](docs/architecture/roadmap.md) | Releases e cards |
 | [ADRs](docs/adr/README.md) | Registro de decisões arquiteturais |
 | [Cards](docs/cards/) | Unidades de aprendizado e implementação |
-| [Estudo](docs/study/) | Anotações e explicações sobre as decisões de cada card |
+| [Estudo](docs/study/) | Anotações de estudo por card e [anotações gerais](docs/study/BASE-STUDY.md) |
 
 ---
 
@@ -62,7 +62,7 @@ lifehub/
 │   ├── architecture/ # visão, requisitos, arquitetura, roadmap
 │   ├── adr/          # Architecture Decision Records
 │   ├── cards/        # cards de aprendizado
-│   ├── study/        # anotações de estudo por card
+│   ├── study/        # anotações de estudo (por card e gerais)
 │   ├── diagrams/     # C4 e outros diagramas (Mermaid)
 │   └── database/     # modelo de dados e convenções
 ├── infra/            # Docker Compose, Nginx
@@ -93,7 +93,7 @@ Cada card tem objetivo, conceitos para estudar, perguntas para reflexão, decis�
 |---|---|
 | Projeto | Em planejamento |
 | Último card concluído | [CARD-000 — Visão do Produto e Definição Arquitetural](docs/cards/CARD-000.md) |
-| Próximo card | CARD-001 — Modelo de domínio e bounded contexts |
+| Card atual | [CARD-001 — Modelo de domínio e bounded contexts](docs/cards/CARD-001.md) |
 | Implementação | Base gerada pelo Spring Initializr; nenhuma funcionalidade ainda |
 
 ---

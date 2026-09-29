@@ -17,7 +17,7 @@ flowchart LR
 | Card | Título |
 |---|---|
 | [CARD-000](../cards/CARD-000.md) | Visão do produto e definição arquitetural |
-| CARD-001 | Modelo de domínio e bounded contexts (event storming solo e leve) |
+| [CARD-001](../cards/CARD-001.md) | Modelo de domínio e bounded contexts (event storming solo e leve) |
 
 ## F1 — Walking skeleton
 *Você aprende:* Git, Maven, Spring Boot, fronteiras de módulo, Docker, Liquibase, testes e CI.
