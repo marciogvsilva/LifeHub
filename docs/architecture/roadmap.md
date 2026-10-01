@@ -24,12 +24,12 @@ flowchart LR
 
 | Card | Título |
 |---|---|
-| CARD-002 | Repositório, convenções de commit e estrutura do monorepo |
-| CARD-003 | Spring Boot por módulo (package-by-feature) + Spring Modulith/ArchUnit |
-| CARD-004 | PostgreSQL no Docker Compose + Liquibase + primeira migration |
-| CARD-005 | React + Vite + TypeScript chamando um endpoint real (CORS) |
-| CARD-006 | Testes unitários e de integração (Testcontainers) + GitHub Actions (CI) |
-| CARD-007 | Primeiro deploy no notebook: Compose, health check, logs estruturados, backup |
+| [CARD-002](../cards/CARD-002.md) | Repositório, convenções de commit e estrutura do monorepo |
+| [CARD-003](../cards/CARD-003.md) | Spring Boot por módulo (package-by-feature) + Spring Modulith/ArchUnit |
+| [CARD-004](../cards/CARD-004.md) | PostgreSQL no Docker Compose + Liquibase + primeira migration |
+| [CARD-005](../cards/CARD-005.md) | React + Vite + TypeScript chamando um endpoint real (CORS) |
+| [CARD-006](../cards/CARD-006.md) | Testes unitários e de integração (Testcontainers) + GitHub Actions (CI) |
+| [CARD-007](../cards/CARD-007.md) | Primeiro deploy no notebook: Compose, health check, logs estruturados, backup |
 
 ✅ **Checkpoint:** um sistema "vazio", mas no ar no seu servidor e com backup.
 
